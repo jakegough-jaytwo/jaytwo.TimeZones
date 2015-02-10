@@ -1,0 +1,97 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>jaytwo.TimeZones</name>
+    </assembly>
+    <members>
+        <member name="M:jaytwo.Common.Extensions.DateTimeExtensions.ConvertTimeZone(System.DateTime,System.String,System.String)">
+            <summary>
+            Creates a new <see cref="T:System.DateTime" /> representing source date/time in the <code>targetTimeZone</code>.
+            </summary>
+            <param name="value">Source Local Time.  <see cref="P:System.DateTime.Kind" /> is ignored.</param>
+            <param name="sourceTimeZone">Tzdb/Olson Time Zone, CLDR TimeZone Key, or canonical <see cref="T:jaytwo.TimeZones.TimeZoneListItem" /> Id</param>
+            <param name="targetTimeZone">Tzdb/Olson Time Zone, CLDR TimeZone Key, or canonical <see cref="T:jaytwo.TimeZones.TimeZoneListItem" /> Id </param>
+            <returns>The resulting date/time.</returns>
+        </member>
+        <member name="M:jaytwo.Common.Extensions.DateTimeExtensions.ConvertTimeZone(System.Nullable{System.DateTime},System.String,System.String)">
+            <summary>
+            Creates a new <see cref="T:System.DateTime" /> representing source date/time in the <code>targetTimeZone</code>.
+            Returns null if <code>value</code> is null.
+            </summary>
+            <param name="value">Source Local Time.  <see cref="P:System.DateTime.Kind" /> is ignored.</param>
+            <param name="sourceTimeZone">Tzdb/Olson Time Zone, CLDR TimeZone Key, or canonical <see cref="T:jaytwo.TimeZones.TimeZoneListItem" /> Id</param>
+            <param name="targetTimeZone">Tzdb/Olson Time Zone, CLDR TimeZone Key, or canonical <see cref="T:jaytwo.TimeZones.TimeZoneListItem" /> Id </param>
+            <returns>The resulting date/time.</returns>
+        </member>
+        <member name="M:jaytwo.Common.Extensions.DateTimeExtensions.LocalTimeToUtc(System.DateTime,System.String)">
+            <summary>
+            Creates a new <see cref="T:System.DateTime" /> representing source date/time in UTC.
+            </summary>
+            <param name="value">Source Local Time.  <see cref="P:System.DateTime.Kind" /> is ignored.</param>
+            <param name="sourceTimeZone">Tzdb/Olson Time Zone, CLDR TimeZone Key, or canonical <see cref="T:jaytwo.TimeZones.TimeZoneListItem" /> Id</param>
+            <returns>The resulting date/time.</returns>
+        </member>
+        <member name="M:jaytwo.Common.Extensions.DateTimeExtensions.LocalTimeToUtc(System.Nullable{System.DateTime},System.String)">
+            <summary>
+            Creates a new <see cref="T:System.DateTime" /> representing source date/time in UTC.
+            Returns null if <code>sourceLocalTime</code> is null.
+            </summary>
+            <param name="value">Source Local Time.  <see cref="P:System.DateTime.Kind" /> is ignored.</param>
+            <param name="sourceTimeZone">Tzdb/Olson Time Zone, CLDR TimeZone Key, or canonical <see cref="T:jaytwo.TimeZones.TimeZoneListItem" /> Id</param>
+            <returns>The resulting date/time.</returns>
+        </member>
+        <member name="M:jaytwo.TimeZones.TimeZoneUtility.ConvertTimeZone(System.DateTime,System.String,System.String)">
+            <summary>
+            Creates a new <see cref="T:System.DateTime" /> representing source date/time in the <code>targetTimeZone</code>.
+            </summary>
+            <param name="sourceLocalTime">Source Local Time.  <see cref="P:System.DateTime.Kind" /> is ignored.</param>
+            <param name="sourceTimeZone">Tzdb/Olson Time Zone, CLDR TimeZone Key, or canonical <see cref="T:jaytwo.TimeZones.TimeZoneListItem" /> Id</param>
+            <param name="targetTimeZone">Tzdb/Olson Time Zone, CLDR TimeZone Key, or canonical <see cref="T:jaytwo.TimeZones.TimeZoneListItem" /> Id </param>
+            <returns>The resulting date/time.</returns>
+        </member>
+        <member name="M:jaytwo.TimeZones.TimeZoneUtility.ConvertTimeZone(System.Nullable{System.DateTime},System.String,System.String)">
+            <summary>
+            Creates a new <see cref="T:System.DateTime" /> representing source date/time in the <code>targetTimeZone</code>.
+            Returns null if <code>sourceLocalTime</code> is null.
+            </summary>
+            <param name="sourceLocalTime">Source Local Time. <see cref="P:System.DateTime.Kind" /> is ignored.</param>
+            <param name="sourceTimeZone">Tzdb/Olson Time Zone, CLDR TimeZone Key, or canonical <see cref="T:jaytwo.TimeZones.TimeZoneListItem" /> Id</param>
+            <param name="targetTimeZone">Tzdb/Olson Time Zone, CLDR TimeZone Key, or canonical <see cref="T:jaytwo.TimeZones.TimeZoneListItem" /> Id </param>
+            <returns>The resulting date/time.</returns>
+        </member>
+        <member name="M:jaytwo.TimeZones.TimeZoneUtility.ConvertTimeZone(NodaTime.ZonedDateTime,System.String)">
+            <summary>
+            Creates a new <see cref="T:NodaTime.ZonedDateTime" /> representing source date/time in the <code>targetTimeZone</code>.
+            </summary>
+            <param name="source">Source Local Time.</param>
+            <param name="targetTimeZone">Tzdb/Olson Time Zone, CLDR TimeZone Key, or canonical <see cref="T:jaytwo.TimeZones.TimeZoneListItem" /> Id</param>
+            <returns>The resulting date/time.</returns>
+        </member>
+        <member name="M:jaytwo.TimeZones.TimeZoneUtility.ConvertTimeZone(System.Nullable{NodaTime.ZonedDateTime},System.String)">
+            <summary>
+            Creates a new <see cref="T:NodaTime.ZonedDateTime" /> representing source date/time in the <code>targetTimeZone</code>.
+            Returns null if <code>sourceLocalTime</code> is null.
+            </summary>
+            <param name="source">Source Local Time.</param>
+            <param name="targetTimeZone">Tzdb/Olson Time Zone, CLDR TimeZone Key, or canonical <see cref="T:jaytwo.TimeZones.TimeZoneListItem" /> Id</param>
+            <returns>The resulting date/time.</returns>
+        </member>
+        <member name="M:jaytwo.TimeZones.TimeZoneUtility.LocalTimeToUtc(System.DateTime,System.String)">
+            <summary>
+            Creates a new <see cref="T:System.DateTime" /> representing source date/time in UTC.
+            </summary>
+            <param name="sourceLocalTime">Source Local Time.  <see cref="P:System.DateTime.Kind" /> is ignored.</param>
+            <param name="sourceTimeZone">Tzdb/Olson Time Zone, CLDR TimeZone Key, or canonical <see cref="T:jaytwo.TimeZones.TimeZoneListItem" /> Id</param>
+            <returns>The resulting date/time.</returns>
+        </member>
+        <member name="M:jaytwo.TimeZones.TimeZoneUtility.LocalTimeToUtc(System.Nullable{System.DateTime},System.String)">
+            <summary>
+            Creates a new <see cref="T:System.DateTime" /> representing source date/time in UTC.
+            Returns null if <code>sourceLocalTime</code> is null.
+            </summary>
+            <param name="sourceLocalTime">Source Local Time.  <see cref="P:System.DateTime.Kind" /> is ignored.</param>
+            <param name="sourceTimeZone">Tzdb/Olson Time Zone, CLDR TimeZone Key, or canonical <see cref="T:jaytwo.TimeZones.TimeZoneListItem" /> Id</param>
+            <returns>The resulting date/time.</returns>
+        </member>
+    </members>
+</doc>

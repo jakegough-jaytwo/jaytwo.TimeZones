@@ -1,0 +1,52 @@
+﻿// auto generated {{ renderTime }}
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace jaytwo.TimeZones
+{
+    internal static partial class TimeZoneRepositoryInternal
+    {
+        private static IEnumerable<CountryListItem> GetAllCountries()
+        {
+            {% for item in countries %}
+            yield return new CountryListItem()
+            {
+                Id = "{{ item.Id }}",
+                Name = "{{ item.Name }}",
+            };
+            {% endfor %}
+        }
+
+        private static IEnumerable<TimeZoneListItem> GetAllTimeZones()
+        {
+            {% for item in timeZones %}
+            yield return new TimeZoneListItem()
+            {
+                Id = "{{ item.Id }}",
+                CldrTimeZoneKey = "{{ item.CldrTimeZoneKey }}",
+                CountryId = "{{ item.CountryId }}",
+                CountryName = "{{ item.CountryName }}",
+                IsAssignedToCountry = {{ item.IsAssignedToCountry }},
+                OlsonTimeZone = "{{ item.OlsonTimeZone }}",
+                DisplayName = "{{ item.DisplayName }}",
+                DisplayNameWithCountry = "{{ item.DisplayNameWithCountry }}",                
+                StandardOffset = "{{ item.StandardOffset }}",
+                DisplayNameWithoutOffset = "{{ item.DisplayNameWithoutOffset }}",                
+            };
+            {% endfor %}
+        }
+
+		private static IDictionary<string, string> CreateCldrTimeZoneKeyToOlsonTimeZoneMap()
+		{
+			var result = new Dictionary<string, string>();
+			
+			{% for item in cldrTimeZoneMap %}
+			result.Add("{{ item[0] }}", "{{ item[1] }}"); {% endfor %}
+
+			return result;
+		}
+    }
+}
