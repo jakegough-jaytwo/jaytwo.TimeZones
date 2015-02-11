@@ -99,7 +99,7 @@ People smarter than me have already thought through all this:
 
 Enter `TimeZoneRepository`.
 
-The `TimeZoneRepository.Default` instance contains a list of time zones and countries that is coded into the assembly.  In the Visual Studio solution, the `CodeGen` project creates
+The `TimeZoneRepository.Default` instance contains a list of time zones and countries that is coded into the assembly.  In the Visual Studio solution, the `CodeGen` project handles that process.
 
 ```cs
 using jaytwo.TimeZones
