@@ -31,6 +31,31 @@ namespace jaytwo.TimeZones.Test.TimeZones
             CollectionAssert.AreEquivalent(fromBuilder, fromRepository);
         }
 
+		[Test]
+		public static void TimeZoneRepositoryInternal_Max_time_zone_length()
+		{
+			var maxIdLength = TimeZoneRepositoryInternal.TimeZones.Max(x => x.Id.Length);
+			Console.WriteLine("Max time zone id length: {0}", maxIdLength);
+			
+			var maxIdLengthWithoutUnderscore = TimeZoneRepositoryInternal.TimeZones
+				.Select(x => x.Id)
+				.Where(x =>!x.Contains("_"))
+				.Max(x => x.Length);
+			Console.WriteLine("Max time zone id length without underscore: {0}", maxIdLengthWithoutUnderscore);
+
+			var fiveDigitsCount = TimeZoneRepositoryInternal.TimeZones
+				.Count(x => x.Id.Length <= 5);
+
+			double fiveDigitPercentage = (double)fiveDigitsCount / (double)TimeZoneRepositoryInternal.TimeZones.Count();
+			Console.WriteLine("percentage of ids with 5 digits or less: {0}", fiveDigitPercentage);
+
+			var eightDigitsCount = TimeZoneRepositoryInternal.TimeZones
+				.Count(x => x.Id.Length <= 8);
+
+			double eightDigitPercentage = (double)eightDigitsCount / (double)TimeZoneRepositoryInternal.TimeZones.Count();
+			Console.WriteLine("percentage of ids with 8 digits or less: {0}", eightDigitPercentage);
+		}
+
         [Test]
         public static void TimeZoneRepositoryInternal_Countries_up_to_date()
         {

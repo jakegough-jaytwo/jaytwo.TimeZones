@@ -6,7 +6,7 @@
     <description>Handy time zone translation tools built on NodaTime</description>
     <authors>Jake Gough</authors>
     <projectUrl>https://github.com/jakegough/jaytwo.TimeZones/</projectUrl>
-    <licenseUrl>https://raw.githubusercontent.com/jakegough/jaytwo.TimeZoneLib/master/LICENSE</licenseUrl>
+    <licenseUrl>https://raw.githubusercontent.com/jakegough/jaytwo.TimeZones/master/LICENSE</licenseUrl>
     <tags>jakegough jaytwo nodatime timezone timezones</tags>
   </metadata>
   <files>
