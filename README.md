@@ -4,7 +4,7 @@ A library built on top of NodaTime to make working with time zones a little easi
 
 ## Installation
 
-Get the nuget package: jaytwo.TimeZones
+Get the nuget package: [jaytwo.TimeZones](https://www.nuget.org/packages/jaytwo.TimeZones/)
 
 The package contains binaries for .NET frameworks: `3.5`/`4.0`/`4.5.`.
 
@@ -15,8 +15,8 @@ For your own sanity....
 - Store evrything in UTC.  Work with UTC everywhere you can in your code.
 - Include Utc in your variable names and database columns to remove any question.
 - If you're working with a local time, include context with your names. In a CRM system, `userLocalStartTime` is not the same as `clientLocalStartTime`.
-- Use only Unix/Tzdb/Olson time zones.  Don't even bother with Windows Time zones.  The battle ended, and windows lost.
-- Don't try to imply meaning with `DateTimeKind.Utc` vs `DateTimeKind.Local`.  If you have trouble with (de)serialization, look at DateTimeKind first.
+- Use only Unix/Tzdb/Olson time zones.  Don't even bother with Windows Time zones.  The battle is over; Windows lost.
+- Don't try to imply meaning with `DateTimeKind.Utc` vs `DateTimeKind.Local`.  If you have trouble with (de)serialization (especially XML `DataSet` and `DataContract`), look at `DateTimeKind`.
 
 ## Highlights
 
@@ -49,7 +49,7 @@ TimeZoneUtility.UtcToZonedDateTime(new DateTime("2015-01-15T17:00"));
 
 ### Extension Methods
 
-I keep extension methods in the `jaytwo.Common.Extensions` namespace.  These are intented to complement existing extensions found in my `jaytwo.Common` library.
+I keep extension methods in the `jaytwo.Common.Extensions` namespace.  These are intented to complement existing extensions found in my `[jaytwo.Common](https://github.com/jakegough/jaytwo.CommonLib)` library.
 
 #### To/From UTC
 
@@ -92,12 +92,15 @@ Database tables over different projects is a maintenance nightmare, plus every t
 
 People smarter than me have already thought through all this:
 
-- Tzdb defines names and timekeeping rules for every time zone.
-- NodaTime does all the heavy lifting translating between time zones and accounting for daylight saving, etc.
-- Google provides a nice interface in Google Calendar for selecting a time zone by country.  
-- Unicode's CLDR project maintains a list of immutable keys for each time zone in the tzdb.
+- [Tzdb](http://www.iana.org/time-zones) is the de facto time zone standard.
+- [NodaTime](https://www.nuget.org/packages/NodaTime) uses tzdb data and does all the heavy lifting translating between time zones and accounting for complex rules like daylight saving, etc.
+- [Google Calendar](https://www.google.com/calendar) provides a nice interface for selecting a time zone by country.  
+- [Unicode's CLDR project](http://cldr.unicode.org/) maintains a list of immutable keys for each time zone in the tzdb.
+- [GeoNames](http://www.geonames.org/) provides tables to map country names to ISO codes. 
 
-Enter `TimeZoneRepository`.
+Enter `TimeZoneRepository`
+
+### Usage
 
 The `TimeZoneRepository.Default` instance contains a list of time zones and countries that is coded into the assembly.  In the Visual Studio solution, the `CodeGen` project handles that process.
 
@@ -112,7 +115,7 @@ TimeZoneRepository.Default.GetCountries();
 TimeZoneRepository.Default.GetTimeZonesByCountryId(selectedCountry);
 ```
 
-Here is sample definitions for `CountryListItem` and `TimeZoneListItem`:
+Here are sample definitions for `CountryListItem` and `TimeZoneListItem`:
 ```cs
 ...
 yield return new CountryListItem()
@@ -137,7 +140,7 @@ yield return new TimeZoneListItem()
 ....
 ```
 
-You only need to store the time zone's `Id`, `usden`.  From this you can look up the country (`US`), and the Olson time zone (`America/Denver`).  
+You only need to store the time zone's `Id` (`usden`).  From this you can look up the country (`US`), and the Olson time zone (`America/Denver`).  
 
 Most of the time the `Id` will be the `CldrTimeZoneKey`.  But not always:
 
@@ -158,5 +161,17 @@ yield return new TimeZoneListItem()
 ```
 
 In cases like this, the `Id` is the `CldrTimeZoneKey` suffixed with the lower-cased `CountryId`.
+
+### Using `TimeZoneListItem.Id` Directly
+
+Any of the methods for transforming time zones in `TimeZoneUtility` or the extension methods also work fine with the CLDR keys or the default `TimeZoneRepository` time zone ids. 
+
+```cs
+using jaytwo.Common.Extensions
+...
+
+new DateTime("2015-01-15T22:00").UtcToLocalTime("usnyc"); //returns 2015-01-15T17:00
+```
+### Storing `TimeZoneListItem.Id` in a Database
 
 If you're creating a database table to store the time zone id, you're probably safe with a `VARCHAR(15)`.  ~76% of the ids are 5 characters or less.  ~99.7% of the keys are 8 characters or less.   At the time of this writing, the longest `CldrTimeZoneKey` in the list is 8 characters long.   If we had to suffix that with an underscore and a 2-digit country ISO codo, that brings us to a potential 11 characters.
